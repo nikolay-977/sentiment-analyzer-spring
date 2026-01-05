@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: sentiment-analyzer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+
+logging:
+  level:
+    com.example.sentiment: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+info:
+  app:
+    name: Sentiment Analyzer
+    description: AI-powered sentiment analysis service
+    version: 1.0.0
